@@ -236,15 +236,24 @@ code { font-family: var(--mono); font-size: 0.9em; }
 
 /* Waypoint pin — a plain tick for a minor mark, a magenta star
    flare for the major light, exactly as a chart would render them. */
+/* Each pin renders the same mark as its row in the legend. Keep these
+   four in lockstep with .key--* below — if they drift, the legend stops
+   describing the chart, which is worse than having no legend. */
 .wp__pin {
   position: absolute; left: -7px; top: 2.4rem;
   width: 14px; height: 14px;
   background: var(--paper); border: 2px solid var(--ink-soft);
   border-radius: 50%;
 }
+.wp[data-kind="prod"]    .wp__pin { border-color: var(--magenta); }
+.wp[data-kind="course"]  .wp__pin { border-color: var(--ink-soft); }
+.wp[data-kind="private"] .wp__pin { border-color: var(--ink-faint); border-style: dashed; }
+
+/* The major light outranks its production mark — it is the one fixed
+   point the chart is oriented from, so it reads as a lit beacon. */
 .wp[data-mark="major"] .wp__pin {
   left: -10px; width: 20px; height: 20px;
-  background: var(--magenta); border-color: var(--magenta);
+  background: var(--magenta); border-color: var(--magenta); border-style: solid;
   box-shadow: 0 0 0 5px color-mix(in srgb, var(--magenta) 18%, transparent);
 }
 
@@ -365,12 +374,34 @@ code { font-family: var(--mono); font-size: 0.9em; }
 .about em { font-style: italic; color: var(--ink); }
 
 /* ── contact ───────────────────────────────────────────────── */
-.contact__list { list-style: none; margin: 2rem 0 0; padding: 0; }
+.hail { display: flex; flex-wrap: wrap; gap: clamp(1.5rem, 4vw, 3rem); margin-top: 2.25rem; align-items: flex-start; }
+.hail__body { flex: 1 1 22rem; min-width: 0; }
+.hail__lede { margin: 0 0 0.5rem; color: var(--ink-soft); max-width: 46ch; }
+
+/* Ringed like a compass rose bezel rather than a plain avatar. */
+.hail__portrait {
+  flex: none;
+  width: clamp(8rem, 22vw, 11.5rem);
+  height: clamp(8rem, 22vw, 11.5rem);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 22%;
+  border: 2px solid var(--magenta);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--magenta) 12%, transparent), var(--shadow);
+  background: var(--paper-deep);
+}
+
+.contact__list { list-style: none; margin: 1.25rem 0 0; padding: 0; }
 .contact__list li { padding: 0.9rem 0; border-top: 1px solid var(--rule); }
 .contact__list li:last-child { border-bottom: 1px solid var(--rule); }
 .contact__list a {
-  font-family: var(--display); font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+  font-family: var(--display); font-size: clamp(1.05rem, 2.4vw, 1.4rem);
   text-decoration: none; border-bottom: 1px solid var(--magenta);
+}
+.contact__note {
+  display: block; margin-top: 0.3rem;
+  font-family: var(--mono); font-size: 0.7rem;
+  letter-spacing: 0.08em; color: var(--ink-faint);
 }
 
 /* ── foot ──────────────────────────────────────────────────── */

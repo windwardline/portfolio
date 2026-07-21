@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Michael Peacock — Software Engineer</title>
-<meta name="description" content="Software engineer. Seven shipped projects across Next.js, Supabase, Postgres and vanilla web — plotted as a navigational chart.">
+<meta name="description" content="Software engineer. Former US Naval Officer in Information Warfare, former Gartner consultant. Seven shipped projects, plotted as a navigational chart.">
 <meta name="color-scheme" content="light dark">
 
 <meta property="og:title" content="Michael Peacock — Software Engineer">
@@ -71,7 +71,7 @@
     <p class="eyebrow">Plotted in order of departure</p>
     <h2 class="h2" id="course-h">The course</h2>
     <p class="section-lede">
-      Read it left to right, first commit to last. The sequence is the point —
+      Read it top to bottom, first commit to last. The sequence is the point —
       each project picked up something the one before it was missing.
     </p>
   </div>
@@ -87,7 +87,7 @@
     <ol class="waypoints">
 
       <!-- 01 -->
-      <li class="wp" data-mark="minor">
+      <li class="wp" data-kind="course">
         <div class="wp__pin" aria-hidden="true"></div>
         <article class="card">
           <header class="card__head">
@@ -102,18 +102,18 @@
             live demo could never fail on a missing asset.
           </p>
           <ul class="stack">
-            <li>Vanilla JS</li><li>CSS</li><li>Semantic HTML</li>
+            <li>Vanilla JS</li><li>CSS</li><li>Semantic HTML</li><li>Tailwind</li>
           </ul>
-          <p class="card__sound"><span class="sounding">18</span> commits · single-file build</p>
+          <p class="card__sound"><span class="sounding">18</span> commits · single-file build · validated markup in CI</p>
           <p class="card__links">
-            <a href="https://proper-form.windwardline.com">Live site</a>
-            <a href="https://github.com/windwardline/proper-form-style-guide">Source</a>
+            <a href="https://proper-form.windwardline.com" target="_blank" rel="noopener noreferrer">Live site</a>
+            <a href="https://github.com/windwardline/proper-form-style-guide" target="_blank" rel="noopener noreferrer">Source</a>
           </p>
         </article>
       </li>
 
       <!-- 02 — the major light -->
-      <li class="wp" data-mark="major">
+      <li class="wp" data-kind="prod" data-mark="major">
         <div class="wp__pin" aria-hidden="true"></div>
         <article class="card card--light">
           <p class="card__flare">Major light</p>
@@ -130,18 +130,18 @@
             The longest-running project here, and the one I keep returning to.
           </p>
           <ul class="stack">
-            <li>React</li><li>Vite</li><li>TypeScript</li><li>Supabase</li><li>Postgres · RLS</li><li>Edge Functions</li>
+            <li>React</li><li>Vite</li><li>TypeScript</li><li>Supabase</li><li>Postgres · RLS</li><li>Edge Functions</li><li>Realtime</li>
           </ul>
-          <p class="card__sound"><span class="sounding">106</span> commits · <span class="sounding">11</span> test files · RLS on every user table</p>
+          <p class="card__sound"><span class="sounding">106</span> commits · <span class="sounding">11</span> test files · RLS on every user table, verified fail-closed</p>
           <p class="card__links">
-            <a href="https://levelflow.windwardline.com">Live site</a>
-            <a href="https://github.com/windwardline/levelflow-cloud">Source</a>
+            <a href="https://levelflow.windwardline.com" target="_blank" rel="noopener noreferrer">Live site</a>
+            <a href="https://github.com/windwardline/levelflow-cloud" target="_blank" rel="noopener noreferrer">Source</a>
           </p>
         </article>
       </li>
 
       <!-- 03 -->
-      <li class="wp" data-mark="minor">
+      <li class="wp" data-kind="course">
         <div class="wp__pin" aria-hidden="true"></div>
         <article class="card">
           <header class="card__head">
@@ -154,25 +154,26 @@
             destination's, so you can see exactly when to sleep on the plane.
             Five-day solo sprint, built test-first — the temporal engine has a
             documented red-green-refactor history, because time zones punish
-            guessing.
+            guessing. Includes a retrieval-augmented travel coach that falls
+            back to lexical search when no model key is present.
           </p>
           <ul class="stack">
-            <li>Next.js</li><li>Prisma</li><li>Postgres</li><li>Luxon</li><li>SunCalc</li><li>Vitest</li>
+            <li>Next.js</li><li>Prisma</li><li>Postgres</li><li>Luxon</li><li>SunCalc</li><li>Vitest</li><li>Playwright</li><li>Resend</li>
           </ul>
-          <p class="card__sound"><span class="sounding">142</span> commits · <span class="sounding">183</span> tests across <span class="sounding">40</span> files</p>
+          <p class="card__sound"><span class="sounding">143</span> commits · <span class="sounding">183</span> tests across <span class="sounding">40</span> files</p>
           <p class="card__links">
-            <a href="https://timeshift.windwardline.com">Live site</a>
-            <a href="https://github.com/windwardline/timeshift">Source</a>
+            <a href="https://timeshift.windwardline.com" target="_blank" rel="noopener noreferrer">Live site</a>
+            <a href="https://github.com/windwardline/timeshift" target="_blank" rel="noopener noreferrer">Source</a>
           </p>
         </article>
       </li>
 
       <!-- 04 -->
-      <li class="wp" data-mark="minor">
+      <li class="wp" data-kind="prod">
         <div class="wp__pin" aria-hidden="true"></div>
         <article class="card">
           <header class="card__head">
-            <p class="card__when"><span class="sounding">2026-07</span></p>
+            <p class="card__when"><span class="sounding">2026-07</span> → ongoing</p>
             <h3 class="card__name">Mimic</h3>
             <p class="card__kind" data-kind="prod">Production</p>
           </header>
@@ -187,16 +188,16 @@
           <ul class="stack">
             <li>Next.js</li><li>TypeScript</li><li>pdf.js</li><li>Supabase</li><li>Vitest</li>
           </ul>
-          <p class="card__sound">No OCR · no scraping · <span class="sounding">5</span> test files</p>
+          <p class="card__sound">No OCR · no scraping · <span class="sounding">56</span> tests</p>
           <p class="card__links">
-            <a href="https://mimic.windwardline.com">Live site</a>
-            <a href="https://github.com/windwardline/mimic">Source</a>
+            <a href="https://mimic.windwardline.com" target="_blank" rel="noopener noreferrer">Live site</a>
+            <a href="https://github.com/windwardline/mimic" target="_blank" rel="noopener noreferrer">Source</a>
           </p>
         </article>
       </li>
 
       <!-- 05 -->
-      <li class="wp" data-mark="minor">
+      <li class="wp" data-kind="course">
         <div class="wp__pin" aria-hidden="true"></div>
         <article class="card">
           <header class="card__head">
@@ -212,18 +213,18 @@
             the model is unavailable, so a demo never dies on an API outage.
           </p>
           <ul class="stack">
-            <li>Next.js</li><li>Zod</li><li>Zapier</li><li>OpenAI-compatible API</li><li>Vitest</li>
+            <li>Next.js</li><li>TypeScript</li><li>Zod</li><li>Zapier</li><li>Groq</li><li>Resend</li><li>Vitest</li>
           </ul>
-          <p class="card__sound">Deterministic fallback path · <span class="sounding">4</span> test files</p>
+          <p class="card__sound">Deterministic fallback path · <span class="sounding">19</span> tests</p>
           <p class="card__links">
-            <a href="https://thats-extra.windwardline.com">Live site</a>
-            <a href="https://github.com/windwardline/thats-extra">Source</a>
+            <a href="https://thats-extra.windwardline.com" target="_blank" rel="noopener noreferrer">Live site</a>
+            <a href="https://github.com/windwardline/thats-extra" target="_blank" rel="noopener noreferrer">Source</a>
           </p>
         </article>
       </li>
 
       <!-- 06 -->
-      <li class="wp" data-mark="minor">
+      <li class="wp" data-kind="prod">
         <div class="wp__pin" aria-hidden="true"></div>
         <article class="card">
           <header class="card__head">
@@ -239,18 +240,18 @@
             can never quietly guess about someone's life.
           </p>
           <ul class="stack">
-            <li>Next.js</li><li>pnpm workspaces</li><li>Neon Postgres</li><li>Drizzle</li><li>Playwright</li><li>Groq</li>
+            <li>Next.js</li><li>TypeScript</li><li>pnpm workspaces</li><li>Neon Postgres</li><li>Drizzle</li><li>Playwright</li><li>Groq</li><li>Resend</li>
           </ul>
-          <p class="card__sound"><span class="sounding">6</span> CI workflows · security scan, production health, recovery drill</p>
+          <p class="card__sound"><span class="sounding">6</span> CI workflows · CodeQL, secret scan, OSV dependency scan, license policy, production health, recovery drill</p>
           <p class="card__links">
-            <a href="https://pathfinder.windwardline.com">Live site</a>
-            <a href="https://github.com/windwardline/pathfinder">Source</a>
+            <a href="https://pathfinder.windwardline.com" target="_blank" rel="noopener noreferrer">Live site</a>
+            <a href="https://github.com/windwardline/pathfinder" target="_blank" rel="noopener noreferrer">Source</a>
           </p>
         </article>
       </li>
 
       <!-- 07 -->
-      <li class="wp" data-mark="minor">
+      <li class="wp" data-kind="private">
         <div class="wp__pin" aria-hidden="true"></div>
         <article class="card">
           <header class="card__head">
@@ -286,25 +287,26 @@
     <h2 class="h2" id="legend-h">Legend</h2>
     <p class="section-lede">
       Not everything here is the same kind of thing, and a chart that hides
-      that is worse than no chart. What each mark means:
+      that is worse than no chart. Each waypoint above carries the mark that
+      matches its row here.
     </p>
 
     <dl class="legend__grid">
       <div class="legend__row">
         <dt><span class="key key--prod" aria-hidden="true"></span> Production</dt>
-        <dd>Live on its own domain, handling real data. Deployed continuously from <code>main</code>.</dd>
+        <dd>Live on its own domain, handling real data. Deployed continuously from <code>main</code>. — LevelFlow Cloud, Mimic, Pathfinder</dd>
       </div>
       <div class="legend__row">
         <dt><span class="key key--course" aria-hidden="true"></span> Course project</dt>
-        <dd>Built to a brief and a deadline for coursework. Deployed and working — but scoped to the assignment, not to a market.</dd>
+        <dd>Built to a brief and a deadline for coursework. Deployed and working — but scoped to the assignment, not to a market. — Proper Form, TimeShift, That's Extra</dd>
       </div>
       <div class="legend__row">
         <dt><span class="key key--private" aria-hidden="true"></span> Private repository</dt>
-        <dd>Real material I can describe but not open. Available to talk through in an interview.</dd>
+        <dd>Real material I can describe but not open. Available to talk through in an interview. — Refactored</dd>
       </div>
       <div class="legend__row">
         <dt><span class="key key--light" aria-hidden="true"></span> Major light</dt>
-        <dd>The fixed point the rest of the chart is oriented from — longest-running, most invested, still moving.</dd>
+        <dd>The fixed point the rest of the chart is oriented from — longest-running, most invested, still moving. — LevelFlow Cloud</dd>
       </div>
     </dl>
   </div>
@@ -331,11 +333,11 @@
       </section>
       <section class="inst">
         <h3>Proving it works</h3>
-        <ul><li>Vitest · test-first</li><li>Playwright</li><li>GitHub Actions</li><li>gitleaks · secret scanning</li><li>Semgrep</li></ul>
+        <ul><li>Vitest · test-first</li><li>Playwright</li><li>GitHub Actions</li><li>CodeQL · Semgrep</li><li>gitleaks · secret scanning</li></ul>
       </section>
       <section class="inst">
         <h3>Shipping</h3>
-        <ul><li>GitHub holds it</li><li>Vercel deploys it</li><li>Cloudflare answers for it</li><li>Resend for mail</li><li>Groq · OpenAI-compatible APIs</li></ul>
+        <ul><li>GitHub holds it</li><li>Vercel deploys it</li><li>Cloudflare answers for it</li><li>Resend for mail</li><li>Groq for inference</li></ul>
       </section>
     </div>
   </div>
@@ -348,11 +350,21 @@
     <h2 class="h2" id="about-h">About</h2>
 
     <p class="about__lead">
-      I came to software late, and on purpose.
+      This is my third career. The first two taught me what the third is for.
     </p>
 
     <p>
-      I'm a formerly incarcerated engineer. That fact shows up in the work
+      I was a consultant at <strong>Gartner</strong>, advising on technology
+      strategy. Then I was a <strong>commissioned officer in the United States
+      Navy</strong>, serving in <strong>Information Warfare as an Information
+      Professional Officer</strong> — the community responsible for the
+      networks, communications, and information systems a fleet actually runs
+      on. Both jobs were the same job underneath: understand a system well
+      enough to be trusted with it when it matters.
+    </p>
+
+    <p>
+      I'm also a formerly incarcerated engineer. That fact shows up in the work
       rather than around it: Pathfinder exists because leaving prison is a
       routing problem nobody has bothered to solve properly. Proper Form has a
       persona named Raymond who is preparing for his first interview in years.
@@ -371,7 +383,7 @@
     </p>
 
     <p>
-      I'm three months into shipping and I know exactly how much I don't know
+      I'm early in shipping software and I know exactly how much I don't know
       yet. What I can tell you is that everything on this chart is real, every
       link resolves, and I can walk you through any decision on it — including
       the ones I'd make differently now.
@@ -384,11 +396,39 @@
   <div class="wrap wrap--narrow">
     <p class="eyebrow">Hail</p>
     <h2 class="h2" id="contact-h">Get in touch</h2>
-    <p class="section-lede">Open to engineering roles, and happy to talk through any of this.</p>
-    <ul class="contact__list">
-      <li><a href="mailto:michaellynnpeacock@gmail.com">michaellynnpeacock@gmail.com</a></li>
-      <li><a href="https://github.com/windwardline">github.com/windwardline</a></li>
-    </ul>
+
+    <div class="hail">
+      <img class="hail__portrait"
+           src="assets/michael-peacock.jpg"
+           alt="Michael Peacock"
+           width="200" height="200"
+           loading="lazy" decoding="async">
+
+      <div class="hail__body">
+        <p class="hail__lede">
+          Open to engineering roles, and happy to talk through any of this —
+          including the parts I'd build differently now.
+        </p>
+
+        <ul class="contact__list">
+          <li>
+            <a href="mailto:mlp@windwardline.com?subject=Hello%20from%20your%20portfolio"
+               target="_blank" rel="noopener noreferrer">mlp@windwardline.com</a>
+            <span class="contact__note">Subject line is pre-filled</span>
+          </li>
+          <li>
+            <a href="https://koalendar.com/u/windwardline"
+               target="_blank" rel="noopener noreferrer">Book a time directly</a>
+            <span class="contact__note">Pick a slot on my calendar</span>
+          </li>
+          <li>
+            <a href="https://github.com/windwardline"
+               target="_blank" rel="noopener noreferrer">github.com/windwardline</a>
+            <span class="contact__note">Everything above, in source</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 </main>
@@ -398,7 +438,7 @@
     <p>Windward Line · Corrections to the chart are welcome.</p>
     <p class="foot__note">
       Built as a static page — no framework, no build step. Source on
-      <a href="https://github.com/windwardline/portfolio">GitHub</a>.
+      <a href="https://github.com/windwardline/portfolio" target="_blank" rel="noopener noreferrer">GitHub</a>.
     </p>
   </div>
 </footer>
