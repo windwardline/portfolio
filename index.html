@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Michael Peacock — Software Engineer</title>
+<meta name="description" content="Software engineer. Seven shipped projects across Next.js, Supabase, Postgres and vanilla web — plotted as a navigational chart.">
+<meta name="color-scheme" content="light dark">
+
+<meta property="og:title" content="Michael Peacock — Software Engineer">
+<meta property="og:description" content="Seven shipped projects, plotted as a navigational chart.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://portfolio.windwardline.com/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Public+Sans:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23FBF6EC%22/><path d=%22M50 8 L58 42 L92 50 L58 58 L50 92 L42 58 L8 50 L42 42 Z%22 fill=%22%23C4106B%22/></svg>">
+</head>
+<body>
+
+<a class="skip" href="#course">Skip to the work</a>
+
+<button class="lamp" type="button" id="lamp" aria-pressed="false">
+  <span class="lamp__dot" aria-hidden="true"></span>
+  <span class="lamp__text">Night passage</span>
+</button>
+
+<!-- ─────────────────────────  TITLE BLOCK  ───────────────────────── -->
+<!-- Every nautical chart opens with a title block: what this sheet
+     covers, at what scale, in what units. Same idea, same job. -->
+<header class="block" id="top">
+  <div class="block__rule" aria-hidden="true"></div>
+
+  <p class="block__auth">Windward Line · Sheet 1 of 1</p>
+
+  <h1 class="block__title">Michael<br>Peacock</h1>
+
+  <p class="block__sub">Software Engineer</p>
+
+  <dl class="block__meta">
+    <div><dt>Scale</dt><dd>Seven projects, May–Jul 2026</dd></div>
+    <div><dt>Soundings in</dt><dd>Commits, tests, deploys</dd></div>
+    <div><dt>Projection</dt><dd>Chronological</dd></div>
+    <div><dt>Datum</dt><dd>Everything here is live</dd></div>
+  </dl>
+
+  <p class="block__lede">
+    I build things that help people get somewhere they haven't been.
+    Seven projects in three months — six of them running in production
+    right now, on real domains, with real users' data behind row-level
+    security.
+  </p>
+
+  <nav class="block__nav" aria-label="Sections">
+    <a href="#course">The course</a>
+    <a href="#legend">Legend</a>
+    <a href="#instruments">Instruments</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="block__rule" aria-hidden="true"></div>
+</header>
+
+<!-- ─────────────────────────  THE COURSE  ───────────────────────── -->
+<main>
+<section class="course" id="course" aria-labelledby="course-h">
+  <div class="wrap">
+    <p class="eyebrow">Plotted in order of departure</p>
+    <h2 class="h2" id="course-h">The course</h2>
+    <p class="section-lede">
+      Read it left to right, first commit to last. The sequence is the point —
+      each project picked up something the one before it was missing.
+    </p>
+  </div>
+
+  <!-- The rhumb line. Drawn by script.js as you scroll; static and
+       complete if motion is reduced or JS is off. -->
+  <div class="track">
+    <svg class="rhumb" viewBox="0 0 4 1000" preserveAspectRatio="none" aria-hidden="true">
+      <line class="rhumb__ghost" x1="2" y1="0" x2="2" y2="1000"/>
+      <line class="rhumb__ink"   x1="2" y1="0" x2="2" y2="1000"/>
+    </svg>
+
+    <ol class="waypoints">
+
+      <!-- 01 -->
+      <li class="wp" data-mark="minor">
+        <div class="wp__pin" aria-hidden="true"></div>
+        <article class="card">
+          <header class="card__head">
+            <p class="card__when"><span class="sounding">2026-05</span> → 2026-07</p>
+            <h3 class="card__name">Proper Form</h3>
+            <p class="card__kind" data-kind="course">Course project</p>
+          </header>
+          <p class="card__body">
+            A menswear guide for men who were never taught the basics —
+            written for interviews, first office jobs, and showing up with
+            dignity. Built deliberately as a single zero-dependency file so a
+            live demo could never fail on a missing asset.
+          </p>
+          <ul class="stack">
+            <li>Vanilla JS</li><li>CSS</li><li>Semantic HTML</li>
+          </ul>
+          <p class="card__sound"><span class="sounding">18</span> commits · single-file build</p>
+          <p class="card__links">
+            <a href="https://properform.windwardline.com">Live site</a>
+            <a href="https://github.com/windwardline/proper-form-style-guide">Source</a>
+          </p>
+        </article>
+      </li>
+
+      <!-- 02 — the major light -->
+      <li class="wp" data-mark="major">
+        <div class="wp__pin" aria-hidden="true"></div>
+        <article class="card card--light">
+          <p class="card__flare">Major light</p>
+          <header class="card__head">
+            <p class="card__when"><span class="sounding">2026-06</span> → ongoing</p>
+            <h3 class="card__name">LevelFlow Cloud</h3>
+            <p class="card__kind" data-kind="prod">Production</p>
+          </header>
+          <p class="card__body">
+            A disciplined market-review platform: chart analysis, structured
+            trade review, and limit-order setup generation. Every table is
+            user-owned and locked behind row-level security; the analyzer runs
+            as a Supabase Edge Function so market keys never reach the browser.
+            The longest-running project here, and the one I keep returning to.
+          </p>
+          <ul class="stack">
+            <li>React</li><li>Vite</li><li>TypeScript</li><li>Supabase</li><li>Postgres · RLS</li><li>Edge Functions</li>
+          </ul>
+          <p class="card__sound"><span class="sounding">106</span> commits · <span class="sounding">11</span> test files · RLS on every user table</p>
+          <p class="card__links">
+            <a href="https://levelflow.windwardline.com">Live site</a>
+            <a href="https://github.com/windwardline/levelflow-cloud">Source</a>
+          </p>
+        </article>
+      </li>
+
+      <!-- 03 -->
+      <li class="wp" data-mark="minor">
+        <div class="wp__pin" aria-hidden="true"></div>
+        <article class="card">
+          <header class="card__head">
+            <p class="card__when"><span class="sounding">2026-06</span> → 2026-07</p>
+            <h3 class="card__name">TimeShift</h3>
+            <p class="card__kind" data-kind="course">Course project</p>
+          </header>
+          <p class="card__body">
+            A jetlag visualiser that plots your body clock against the
+            destination's, so you can see exactly when to sleep on the plane.
+            Five-day solo sprint, built test-first — the temporal engine has a
+            documented red-green-refactor history, because time zones punish
+            guessing.
+          </p>
+          <ul class="stack">
+            <li>Next.js</li><li>Prisma</li><li>Postgres</li><li>Luxon</li><li>SunCalc</li><li>Vitest</li>
+          </ul>
+          <p class="card__sound"><span class="sounding">142</span> commits · <span class="sounding">183</span> tests across <span class="sounding">40</span> files</p>
+          <p class="card__links">
+            <a href="https://timeshift.windwardline.com">Live site</a>
+            <a href="https://github.com/windwardline/timeshift">Source</a>
+          </p>
+        </article>
+      </li>
+
+      <!-- 04 -->
+      <li class="wp" data-mark="minor">
+        <div class="wp__pin" aria-hidden="true"></div>
+        <article class="card">
+          <header class="card__head">
+            <p class="card__when"><span class="sounding">2026-07</span></p>
+            <h3 class="card__name">Mimic</h3>
+            <p class="card__kind" data-kind="prod">Production</p>
+          </header>
+          <p class="card__body">
+            Converts D&amp;D Beyond character PDFs into Roll20 imports. The
+            interesting part is the failure case: those PDFs store every value
+            as a widget annotation with no AcroForm catalog, so ordinary form
+            APIs read them as empty. Mimic walks the annotations directly, and
+            when a file has been flattened it falls back to mapping loose text
+            back onto the template's field rectangles by geometry.
+          </p>
+          <ul class="stack">
+            <li>Next.js</li><li>TypeScript</li><li>pdf.js</li><li>Supabase</li><li>Vitest</li>
+          </ul>
+          <p class="card__sound">No OCR · no scraping · <span class="sounding">5</span> test files</p>
+          <p class="card__links">
+            <a href="https://mimic.windwardline.com">Live site</a>
+            <a href="https://github.com/windwardline/mimic">Source</a>
+          </p>
+        </article>
+      </li>
+
+      <!-- 05 -->
+      <li class="wp" data-mark="minor">
+        <div class="wp__pin" aria-hidden="true"></div>
+        <article class="card">
+          <header class="card__head">
+            <p class="card__when"><span class="sounding">2026-07</span></p>
+            <h3 class="card__name">That's Extra</h3>
+            <p class="card__kind" data-kind="course">Course project</p>
+          </header>
+          <p class="card__body">
+            Margin recovery for electrical and HVAC subcontractors. Field crews
+            file a two-minute report; an automation turns it into a professional
+            change request and emails the PM before extra work quietly becomes
+            free work. The generator falls back to a deterministic template if
+            the model is unavailable, so a demo never dies on an API outage.
+          </p>
+          <ul class="stack">
+            <li>Next.js</li><li>Zod</li><li>Zapier</li><li>OpenAI-compatible API</li><li>Vitest</li>
+          </ul>
+          <p class="card__sound">Deterministic fallback path · <span class="sounding">4</span> test files</p>
+          <p class="card__links">
+            <a href="https://thats-extra.windwardline.com">Live site</a>
+            <a href="https://github.com/windwardline/thats-extra">Source</a>
+          </p>
+        </article>
+      </li>
+
+      <!-- 06 -->
+      <li class="wp" data-mark="minor">
+        <div class="wp__pin" aria-hidden="true"></div>
+        <article class="card">
+          <header class="card__head">
+            <p class="card__when"><span class="sounding">2026-07</span> → ongoing</p>
+            <h3 class="card__name">Pathfinder</h3>
+            <p class="card__kind" data-kind="prod">Production</p>
+          </header>
+          <p class="card__body">
+            Builds and continuously updates a person's reentry route — what
+            comes next, why it comes next, and what it unlocks. One rule holds
+            the whole system together: only confirmed facts may affect routing.
+            The route engine is the sole sequencing authority, so the product
+            can never quietly guess about someone's life.
+          </p>
+          <ul class="stack">
+            <li>Next.js</li><li>pnpm workspaces</li><li>Neon Postgres</li><li>Drizzle</li><li>Playwright</li><li>Groq</li>
+          </ul>
+          <p class="card__sound"><span class="sounding">6</span> CI workflows · security scan, production health, recovery drill</p>
+          <p class="card__links">
+            <a href="https://pathfinder.windwardline.com">Live site</a>
+            <a href="https://github.com/windwardline/pathfinder">Source</a>
+          </p>
+        </article>
+      </li>
+
+      <!-- 07 -->
+      <li class="wp" data-mark="minor">
+        <div class="wp__pin" aria-hidden="true"></div>
+        <article class="card">
+          <header class="card__head">
+            <p class="card__when"><span class="sounding">2026-07</span> → ongoing</p>
+            <h3 class="card__name">Refactored</h3>
+            <p class="card__kind" data-kind="private">Private repository</p>
+          </header>
+          <p class="card__body">
+            A software consultancy that employs formerly incarcerated engineers.
+            The repository isn't an application — it's the company itself in
+            document form: strategy, process, financial assumptions and
+            decisions, all version-controlled and reviewed like source. Private,
+            because it holds real business material.
+          </p>
+          <ul class="stack">
+            <li>Docs-as-code</li><li>Markdown</li><li>CI-validated</li>
+          </ul>
+          <p class="card__sound">Documentation is source code · decisions are architecture</p>
+          <p class="card__links"><span class="muted">Source private by design</span></p>
+        </article>
+      </li>
+
+    </ol>
+  </div>
+</section>
+
+<!-- ─────────────────────────  LEGEND  ───────────────────────── -->
+<!-- A chart is only useful if you can tell a lighthouse from a wreck.
+     Same reason this section exists. -->
+<section class="legend" id="legend" aria-labelledby="legend-h">
+  <div class="wrap">
+    <p class="eyebrow">How to read this chart</p>
+    <h2 class="h2" id="legend-h">Legend</h2>
+    <p class="section-lede">
+      Not everything here is the same kind of thing, and a chart that hides
+      that is worse than no chart. What each mark means:
+    </p>
+
+    <dl class="legend__grid">
+      <div class="legend__row">
+        <dt><span class="key key--prod" aria-hidden="true"></span> Production</dt>
+        <dd>Live on its own domain, handling real data. Deployed continuously from <code>main</code>.</dd>
+      </div>
+      <div class="legend__row">
+        <dt><span class="key key--course" aria-hidden="true"></span> Course project</dt>
+        <dd>Built to a brief and a deadline for coursework. Deployed and working — but scoped to the assignment, not to a market.</dd>
+      </div>
+      <div class="legend__row">
+        <dt><span class="key key--private" aria-hidden="true"></span> Private repository</dt>
+        <dd>Real material I can describe but not open. Available to talk through in an interview.</dd>
+      </div>
+      <div class="legend__row">
+        <dt><span class="key key--light" aria-hidden="true"></span> Major light</dt>
+        <dd>The fixed point the rest of the chart is oriented from — longest-running, most invested, still moving.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ─────────────────────────  INSTRUMENTS  ───────────────────────── -->
+<section class="instruments" id="instruments" aria-labelledby="inst-h">
+  <div class="wrap">
+    <p class="eyebrow">What's aboard</p>
+    <h2 class="h2" id="inst-h">Instruments</h2>
+    <p class="section-lede">
+      One stack, used deliberately, across every project. I'd rather go deep on
+      a small set of tools than collect logos.
+    </p>
+
+    <div class="inst__grid">
+      <section class="inst">
+        <h3>Building</h3>
+        <ul><li>TypeScript</li><li>Next.js · App Router</li><li>React · Vite</li><li>Vanilla JS, when it's the right answer</li><li>Tailwind · plain CSS</li></ul>
+      </section>
+      <section class="inst">
+        <h3>Data</h3>
+        <ul><li>Postgres</li><li>Supabase · row-level security</li><li>Neon</li><li>Prisma · Drizzle</li><li>Zod at every boundary</li></ul>
+      </section>
+      <section class="inst">
+        <h3>Proving it works</h3>
+        <ul><li>Vitest · test-first</li><li>Playwright</li><li>GitHub Actions</li><li>gitleaks · secret scanning</li><li>Semgrep</li></ul>
+      </section>
+      <section class="inst">
+        <h3>Shipping</h3>
+        <ul><li>GitHub holds it</li><li>Vercel deploys it</li><li>Cloudflare answers for it</li><li>Resend for mail</li><li>Groq · OpenAI-compatible APIs</li></ul>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────  ABOUT  ───────────────────────── -->
+<section class="about" id="about" aria-labelledby="about-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">Bearing</p>
+    <h2 class="h2" id="about-h">About</h2>
+
+    <p class="about__lead">
+      I came to software late, and on purpose.
+    </p>
+
+    <p>
+      I'm a formerly incarcerated engineer. That fact shows up in the work
+      rather than around it: Pathfinder exists because leaving prison is a
+      routing problem nobody has bothered to solve properly. Proper Form has a
+      persona named Raymond who is preparing for his first interview in years.
+      Refactored is a consultancy staffed by engineers with records, built on
+      one principle — <em>mission follows mastery</em>. The mission only earns
+      its place if the craft holds up first.
+    </p>
+
+    <p>
+      So the craft is the part I sweat. Row-level security on every user table
+      before there was a single user. Test-first on the temporal engine because
+      time zones punish confidence. A deterministic fallback in That's Extra
+      because a demo that depends on someone else's uptime isn't a demo. Six CI
+      workflows on Pathfinder — including a recovery drill — because a product
+      about someone's reentry cannot be the thing that fails them.
+    </p>
+
+    <p>
+      I'm three months into shipping and I know exactly how much I don't know
+      yet. What I can tell you is that everything on this chart is real, every
+      link resolves, and I can walk you through any decision on it — including
+      the ones I'd make differently now.
+    </p>
+  </div>
+</section>
+
+<!-- ─────────────────────────  CONTACT  ───────────────────────── -->
+<section class="contact" id="contact" aria-labelledby="contact-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">Hail</p>
+    <h2 class="h2" id="contact-h">Get in touch</h2>
+    <p class="section-lede">Open to engineering roles, and happy to talk through any of this.</p>
+    <ul class="contact__list">
+      <li><a href="mailto:michaellynnpeacock@gmail.com">michaellynnpeacock@gmail.com</a></li>
+      <li><a href="https://github.com/windwardline">github.com/windwardline</a></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Windward Line · Corrections to the chart are welcome.</p>
+    <p class="foot__note">
+      Built as a static page — no framework, no build step. Source on
+      <a href="https://github.com/windwardline/portfolio">GitHub</a>.
+    </p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

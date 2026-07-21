@@ -1,0 +1,12 @@
+# OS
+.DS_Store
+
+# Vercel
+.vercel
+
+# Local agent/tooling state — never belongs in a public repo
+.claude/
+.remember/
+
+# Dependencies (none today, but keep the guard)
+node_modules/

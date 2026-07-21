@@ -1,0 +1,386 @@
+/* ============================================================
+   Michael Peacock — portfolio
+   Visual system: a NOAA-style navigational chart.
+
+   Colour comes from real chart convention, not decoration:
+   buff land, pale shoal water, navy linework, and magenta —
+   which on a real chart is reserved for lights and cautions,
+   so it is reserved here for the one thing worth flagging.
+   ============================================================ */
+
+:root {
+  /* chart sheet */
+  --paper:      #FBF6EC;
+  --paper-deep: #F3EADA;
+  --land:       #E6D7AC;
+  --shoal:      #C9E3E1;
+  --ink:        #14303F;
+  --ink-soft:   #4A6272;
+  /* Carries dates and meta labels at ~0.7rem, so it has to clear AA at
+     small-text weight (4.5:1) — not the 3:1 large-text allowance. */
+  --ink-faint:  #5C7080;
+  --magenta:    #C4106B;
+  --rule:       #C3B896;
+
+  --grid-line:  rgba(20, 48, 63, 0.055);
+
+  /* type */
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --body:    "Public Sans", system-ui, -apple-system, sans-serif;
+  --mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* measure */
+  --wrap:  74rem;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+
+  --shadow: 0 1px 0 var(--rule), 0 12px 28px -20px rgba(20, 48, 63, 0.5);
+}
+
+/* Night passage. Real bridges run red-shifted light after dark to
+   preserve night vision — so the dark theme warms rather than cools. */
+:root[data-theme="night"] {
+  --paper:      #0A141C;
+  --paper-deep: #0F1D28;
+  --land:       #2A2519;
+  --shoal:      #12303A;
+  --ink:        #DCE8EE;
+  --ink-soft:   #93A9B6;
+  --ink-faint:  #71889A;
+  --magenta:    #FF5C9E;
+  --rule:       #2E4150;
+  --grid-line:  rgba(220, 232, 238, 0.05);
+  --shadow: 0 1px 0 var(--rule), 0 14px 34px -22px #000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="day"]) {
+    --paper:      #0A141C;
+    --paper-deep: #0F1D28;
+    --land:       #2A2519;
+    --shoal:      #12303A;
+    --ink:        #DCE8EE;
+    --ink-soft:   #93A9B6;
+    --ink-faint:  #71889A;
+    --magenta:    #FF5C9E;
+    --rule:       #2E4150;
+    --grid-line:  rgba(220, 232, 238, 0.05);
+    --shadow: 0 1px 0 var(--rule), 0 14px 34px -22px #000;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  /* The lat/long graticule. Faint enough to read as paper texture. */
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 3.5rem 3.5rem;
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { width: min(var(--wrap), 100% - var(--gutter) * 2); margin-inline: auto; }
+.wrap--narrow { width: min(46rem, 100% - var(--gutter) * 2); }
+
+a { color: var(--ink); text-decoration-color: var(--magenta); text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
+a:hover { color: var(--magenta); }
+
+:focus-visible { outline: 2px solid var(--magenta); outline-offset: 3px; border-radius: 2px; }
+
+code { font-family: var(--mono); font-size: 0.9em; }
+.muted { color: var(--ink-faint); }
+
+.skip {
+  position: absolute; left: -9999px;
+  background: var(--magenta); color: #fff; padding: 0.75rem 1.25rem;
+  font-family: var(--mono); font-size: 0.8rem; z-index: 50;
+}
+.skip:focus { left: 1rem; top: 1rem; }
+
+/* Soundings — depth figures on a chart are always set in a plain
+   upright face, never italic. Numbers here get the same treatment. */
+.sounding {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  color: var(--magenta);
+}
+
+/* ── lamp toggle ───────────────────────────────────────────── */
+.lamp {
+  position: fixed; top: 1rem; right: 1rem; z-index: 40;
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  padding: 0.5rem 0.85rem;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-family: var(--mono); font-size: 0.7rem;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  cursor: pointer;
+}
+.lamp:hover { color: var(--magenta); border-color: var(--magenta); }
+.lamp__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--magenta); }
+.lamp[aria-pressed="true"] .lamp__dot { box-shadow: 0 0 0 3px rgba(255, 92, 158, 0.25); }
+@media (max-width: 34rem) { .lamp__text { display: none; } }
+
+/* ── title block ───────────────────────────────────────────── */
+.block { padding: clamp(3.5rem, 9vw, 7rem) var(--gutter) clamp(2.5rem, 6vw, 4.5rem); max-width: var(--wrap); margin-inline: auto; }
+.block__rule { height: 3px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+
+.block__auth {
+  margin: 1.1rem 0 0;
+  font-family: var(--mono); font-size: 0.72rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft);
+}
+
+.block__title {
+  margin: 0.5rem 0 0;
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(3.4rem, 13vw, 9.5rem);
+  line-height: 0.85;
+  letter-spacing: -0.035em;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 1;
+}
+
+.block__sub {
+  margin: 1rem 0 0;
+  font-family: var(--display); font-style: italic; font-weight: 400;
+  font-size: clamp(1.25rem, 3.2vw, 1.9rem);
+  color: var(--ink-soft);
+}
+
+/* The chart's data panel — label above value, hairline separated. */
+.block__meta {
+  display: grid; gap: 0 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  margin: 2.5rem 0 0; padding: 1.1rem 0;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.block__meta dt {
+  font-family: var(--mono); font-size: 0.66rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint);
+}
+.block__meta dd { margin: 0.15rem 0 0.7rem; font-size: 0.92rem; color: var(--ink-soft); }
+
+.block__lede {
+  margin: 2rem 0 0; max-width: 44ch;
+  font-size: clamp(1.05rem, 1rem + 0.4vw, 1.3rem); line-height: 1.55;
+}
+
+.block__nav { display: flex; flex-wrap: wrap; gap: 1.4rem; margin: 2.5rem 0 1.5rem; }
+.block__nav a {
+  font-family: var(--mono); font-size: 0.75rem;
+  letter-spacing: 0.11em; text-transform: uppercase;
+  text-decoration: none; color: var(--ink-soft);
+  padding-bottom: 0.2rem; border-bottom: 1px solid transparent;
+}
+.block__nav a:hover { color: var(--magenta); border-bottom-color: var(--magenta); }
+
+/* ── shared section furniture ──────────────────────────────── */
+.eyebrow {
+  margin: 0 0 0.6rem;
+  font-family: var(--mono); font-size: 0.7rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--magenta);
+}
+.h2 {
+  margin: 0;
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(2rem, 5.5vw, 3.4rem); line-height: 1;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 96, "WONK" 1;
+}
+.section-lede { margin: 1rem 0 0; max-width: 52ch; color: var(--ink-soft); font-size: 1.05rem; }
+
+.course, .legend, .instruments, .about, .contact { padding-block: clamp(3.5rem, 9vw, 6.5rem); }
+.legend, .about { background: var(--paper-deep); border-block: 1px solid var(--rule); }
+
+/* ── the plotted course ────────────────────────────────────── */
+/* The line and the waypoint pins must share one origin, or the pins
+   drift off the course. `--course-x` is that single origin: the track
+   is padded to it, the rhumb is drawn on it, and each pin is centred
+   on its own left edge — which now sits exactly there. */
+.track {
+  --course-x: max(var(--gutter), calc(50vw - var(--wrap) / 2));
+  position: relative;
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  padding-left: var(--course-x);
+  padding-right: var(--gutter);
+}
+
+.rhumb {
+  position: absolute; top: 0; left: calc(var(--course-x) - 2px);
+  width: 4px; height: 100%;
+  overflow: visible;
+}
+.rhumb__ghost { stroke: var(--rule); stroke-width: 1; }
+.rhumb__ink {
+  stroke: var(--magenta); stroke-width: 2;
+  stroke-dasharray: 1000; stroke-dashoffset: var(--draw, 0);
+}
+@media (prefers-reduced-motion: reduce) { .rhumb__ink { stroke-dashoffset: 0; } }
+
+.waypoints { list-style: none; margin: 0; padding: 0; }
+
+.wp { position: relative; padding-left: clamp(1.75rem, 4vw, 3.25rem); }
+.wp + .wp { margin-top: clamp(2rem, 5vw, 3.5rem); }
+
+/* Waypoint pin — a plain tick for a minor mark, a magenta star
+   flare for the major light, exactly as a chart would render them. */
+.wp__pin {
+  position: absolute; left: -7px; top: 2.4rem;
+  width: 14px; height: 14px;
+  background: var(--paper); border: 2px solid var(--ink-soft);
+  border-radius: 50%;
+}
+.wp[data-mark="major"] .wp__pin {
+  left: -10px; width: 20px; height: 20px;
+  background: var(--magenta); border-color: var(--magenta);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--magenta) 18%, transparent);
+}
+
+.wp .card { max-width: 60rem; }
+
+/* ── project card ──────────────────────────────────────────── */
+.card {
+  position: relative;
+  padding: clamp(1.5rem, 3.5vw, 2.25rem);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow);
+}
+.card--light { border-color: var(--magenta); border-width: 1.5px; }
+
+.card__flare {
+  position: absolute; top: 0; right: 0;
+  margin: 0; padding: 0.3rem 0.8rem;
+  background: var(--magenta); color: #fff;
+  font-family: var(--mono); font-size: 0.62rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
+
+.card__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem 1.1rem; }
+.card__when {
+  order: -1; flex-basis: 100%; margin: 0;
+  font-family: var(--mono); font-size: 0.72rem;
+  letter-spacing: 0.1em; color: var(--ink-faint);
+}
+.card__name {
+  margin: 0.35rem 0 0;
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(1.5rem, 3.4vw, 2.15rem); line-height: 1.05;
+  letter-spacing: -0.015em;
+  font-variation-settings: "opsz" 72, "WONK" 1;
+}
+.card__kind {
+  margin: 0.35rem 0 0;
+  font-family: var(--mono); font-size: 0.67rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.2rem 0.5rem; border: 1px solid currentColor;
+}
+.card__kind[data-kind="prod"]    { color: var(--magenta); }
+.card__kind[data-kind="course"]  { color: var(--ink-soft); }
+.card__kind[data-kind="private"] { color: var(--ink-faint); }
+
+.card__body { margin: 1rem 0 0; max-width: 62ch; color: var(--ink-soft); }
+
+.stack { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; margin: 1.2rem 0 0; padding: 0; }
+.stack li {
+  font-family: var(--mono); font-size: 0.7rem;
+  padding: 0.22rem 0.55rem;
+  background: var(--shoal); color: var(--ink);
+}
+
+/* Chart convention: water features are lettered in italic. The
+   soundings line describes the depth of the work, so it leans. */
+.card__sound {
+  margin: 1.1rem 0 0; padding-top: 0.9rem;
+  border-top: 1px solid var(--rule);
+  font-style: italic; font-size: 0.88rem; color: var(--ink-soft);
+}
+
+.card__links { display: flex; flex-wrap: wrap; gap: 1.3rem; margin: 1rem 0 0; }
+.card__links a {
+  font-family: var(--mono); font-size: 0.76rem;
+  letter-spacing: 0.07em; text-decoration: none;
+  border-bottom: 1px solid var(--magenta); padding-bottom: 0.12rem;
+}
+.card__links .muted { font-family: var(--mono); font-size: 0.76rem; font-style: italic; }
+
+/* ── legend ────────────────────────────────────────────────── */
+.legend__grid { margin: 2.5rem 0 0; display: grid; gap: 0; }
+.legend__row {
+  display: grid; gap: 0.3rem 2rem;
+  grid-template-columns: minmax(12rem, 16rem) 1fr;
+  padding: 1.1rem 0; border-top: 1px solid var(--rule);
+}
+.legend__row:last-child { border-bottom: 1px solid var(--rule); }
+.legend__row dt {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: var(--mono); font-size: 0.78rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.legend__row dd { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+
+.key { width: 13px; height: 13px; border-radius: 50%; flex: none; border: 2px solid var(--ink-soft); }
+.key--prod    { border-color: var(--magenta); }
+.key--course  { border-color: var(--ink-soft); }
+.key--private { border-color: var(--ink-faint); border-style: dashed; }
+.key--light   { background: var(--magenta); border-color: var(--magenta); box-shadow: 0 0 0 4px color-mix(in srgb, var(--magenta) 18%, transparent); }
+
+@media (max-width: 40rem) { .legend__row { grid-template-columns: 1fr; } }
+
+/* ── instruments ───────────────────────────────────────────── */
+.inst__grid {
+  display: grid; gap: 1px; margin: 2.5rem 0 0;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  background: var(--rule); border: 1px solid var(--rule);
+}
+.inst { padding: 1.5rem; background: var(--paper); }
+.inst h3 {
+  margin: 0 0 0.9rem;
+  font-family: var(--mono); font-size: 0.7rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--magenta);
+}
+.inst ul { margin: 0; padding: 0; list-style: none; }
+.inst li { padding: 0.3rem 0; font-size: 0.93rem; color: var(--ink-soft); border-top: 1px solid var(--grid-line); }
+.inst li:first-child { border-top: 0; }
+
+/* ── about ─────────────────────────────────────────────────── */
+.about__lead {
+  margin: 2rem 0 1.5rem;
+  font-family: var(--display); font-style: italic; font-weight: 400;
+  font-size: clamp(1.4rem, 3.6vw, 2rem); line-height: 1.25; color: var(--ink);
+}
+.about p { max-width: 62ch; color: var(--ink-soft); }
+.about em { font-style: italic; color: var(--ink); }
+
+/* ── contact ───────────────────────────────────────────────── */
+.contact__list { list-style: none; margin: 2rem 0 0; padding: 0; }
+.contact__list li { padding: 0.9rem 0; border-top: 1px solid var(--rule); }
+.contact__list li:last-child { border-bottom: 1px solid var(--rule); }
+.contact__list a {
+  font-family: var(--display); font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+  text-decoration: none; border-bottom: 1px solid var(--magenta);
+}
+
+/* ── foot ──────────────────────────────────────────────────── */
+.foot { padding-block: 3rem; border-top: 1px solid var(--ink); }
+.foot p { margin: 0; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.07em; color: var(--ink-soft); }
+.foot__note { margin-top: 0.5rem; color: var(--ink-faint); }
+
+/* ── reveal ────────────────────────────────────────────────── */
+.wp { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .wp { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .js .wp.is-fixed { opacity: 1; transform: none; }
+}
