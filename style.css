@@ -374,35 +374,48 @@ code { font-family: var(--mono); font-size: 0.9em; }
 .about em { font-style: italic; color: var(--ink); }
 
 /* ── contact ───────────────────────────────────────────────── */
-.hail { display: flex; flex-wrap: wrap; gap: clamp(1.5rem, 4vw, 3rem); margin-top: 2.25rem; align-items: flex-start; }
-.hail__body { flex: 1 1 22rem; min-width: 0; }
-.hail__lede { margin: 0 0 0.5rem; color: var(--ink-soft); max-width: 46ch; }
+/* Centred column: portrait, one line, three routes. The restraint is
+   the point — a chart ends with a single clean bearing, not a list of
+   annotations. */
+.hail {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
 
-/* Ringed like a compass rose bezel rather than a plain avatar. */
+/* Ringed like a compass bezel rather than a plain avatar. */
 .hail__portrait {
-  flex: none;
-  width: clamp(8rem, 22vw, 11.5rem);
-  height: clamp(8rem, 22vw, 11.5rem);
+  width: clamp(9rem, 26vw, 13rem);
+  height: clamp(9rem, 26vw, 13rem);
   border-radius: 50%;
   object-fit: cover;
-  object-position: center 22%;
+  object-position: center 20%;
   border: 2px solid var(--magenta);
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--magenta) 12%, transparent), var(--shadow);
+  box-shadow: 0 0 0 7px color-mix(in srgb, var(--magenta) 12%, transparent), var(--shadow);
   background: var(--paper-deep);
 }
 
-.contact__list { list-style: none; margin: 1.25rem 0 0; padding: 0; }
-.contact__list li { padding: 0.9rem 0; border-top: 1px solid var(--rule); }
-.contact__list li:last-child { border-bottom: 1px solid var(--rule); }
-.contact__list a {
-  font-family: var(--display); font-size: clamp(1.05rem, 2.4vw, 1.4rem);
-  text-decoration: none; border-bottom: 1px solid var(--magenta);
+.hail__lede {
+  margin: 1.75rem 0 0;
+  font-family: var(--display); font-style: italic; font-weight: 400;
+  font-size: clamp(1.15rem, 2.8vw, 1.5rem);
+  color: var(--ink);
 }
-.contact__note {
-  display: block; margin-top: 0.3rem;
-  font-family: var(--mono); font-size: 0.7rem;
-  letter-spacing: 0.08em; color: var(--ink-faint);
+
+.hail__links {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 0.75rem clamp(0.75rem, 3vw, 1.75rem);
+  list-style: none; margin: 1.5rem 0 0; padding: 0;
 }
+.hail__links a {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid var(--rule);
+  font-family: var(--mono); font-size: 0.78rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none; color: var(--ink-soft);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.hail__links a:hover { color: var(--magenta); border-color: var(--magenta); }
 
 /* ── foot ──────────────────────────────────────────────────── */
 .foot { padding-block: 3rem; border-top: 1px solid var(--ink); }
