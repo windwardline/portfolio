@@ -6,10 +6,13 @@ A static portfolio. No framework, no build step, no dependencies — three files
 and a config.
 
 ```
-index.html    structure and content
-style.css     the visual system
-script.js     theme toggle, course-line draw, waypoint reveal
-vercel.json   security headers and caching
+index.html               structure and content
+style.css                the visual system
+script.js                theme toggle, course-line draw, waypoint reveal
+assets/                  portrait
+vercel.json              security headers and caching
+scripts/check-links.mjs  anchor and asset integrity check, run in CI
+.github/workflows/ci.yml markup validation and parse checks
 ```
 
 ## The design
@@ -37,7 +40,18 @@ happened in.
 
 The **legend** is where honesty lives. Not everything here is the same kind of
 thing, and a chart that hides that is worse than no chart, so production work,
-coursework, and private repositories are marked distinctly.
+coursework, and private repositories are marked distinctly — and each waypoint
+draws the same mark as its row in the legend, so the two cannot drift apart
+without it being obvious.
+
+## Continuous integration
+
+Every push and pull request validates the markup (`html-validate`), checks that
+every `#anchor` resolves to a real `id` and every referenced stylesheet and
+script exists, and parses `script.js` and `vercel.json`.
+
+External URLs are deliberately **not** fetched. A third-party outage turning CI
+red is how a gate becomes noise that people learn to ignore.
 
 ## Quality floor
 
