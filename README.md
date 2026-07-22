@@ -5,6 +5,12 @@ Live: **[portfolio.windwardline.com](https://portfolio.windwardline.com)**
 A static portfolio. No framework, no build step, no dependencies — three files
 and a config.
 
+Seven waypoints as of July 2026: six products in production on their own
+domains (LevelFlow Cloud, Mimic, Pathfinder, Proper Form, TimeShift, That's
+Extra) and one launched company — Refactored, live at
+[wearerefactored.com](https://wearerefactored.com), with Pathfinder as its
+first proof. Every link on the chart resolves.
+
 ```
 index.html               structure and content
 style.css                the visual system
