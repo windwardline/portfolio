@@ -7,7 +7,7 @@ and a config.
 
 Seven waypoints as of July 2026: six products in production on their own
 domains (LevelFlow Cloud, Mimic, Pathfinder, Proper Form, TimeShift, That's
-Extra) and one launched company — Refactored, live at
+Extra) and one venture in foundation — Refactored, at
 [wearerefactored.com](https://wearerefactored.com), with Pathfinder as its
 first proof. Every link on the chart resolves.
 
