@@ -22,10 +22,17 @@
 
 <a class="skip" href="#course">Skip to the work</a>
 
-<button class="lamp" type="button" id="lamp" aria-pressed="false">
-  <span class="lamp__dot" aria-hidden="true"></span>
-  <span class="lamp__text">Night passage</span>
-</button>
+<div class="lamp" role="group" aria-label="Lamp">
+  <button class="lamp__opt" type="button" data-set-theme="day" aria-pressed="false">
+    <span class="lamp__dot" aria-hidden="true"></span><span class="lamp__text">Day passage</span>
+  </button>
+  <button class="lamp__opt" type="button" data-set-theme="night" aria-pressed="false">
+    <span class="lamp__dot" aria-hidden="true"></span><span class="lamp__text">Night passage</span>
+  </button>
+  <button class="lamp__opt" type="button" data-set-theme="system" aria-pressed="true">
+    <span class="lamp__dot" aria-hidden="true"></span><span class="lamp__text">Ship&rsquo;s time</span>
+  </button>
+</div>
 
 <!-- ─────────────────────────  TITLE BLOCK  ───────────────────────── -->
 <!-- Every nautical chart opens with a title block: what this sheet

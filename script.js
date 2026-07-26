@@ -10,39 +10,43 @@
 
   var root = document.documentElement;
 
-  /* ── lamp: day / night passage ───────────────────────────── */
+  /* ── the lamp: day / night / ship's time ────────────────── */
   var KEY = 'wl-theme';
-  var lamp = document.getElementById('lamp');
-  var systemDark = window.matchMedia('(prefers-color-scheme: dark)');
-
-  /* The button is labelled with the passage it will switch you TO,
-     so it always reads as the action rather than the state. */
-  function label() {
-    var night = effective() === 'night';
-    lamp.setAttribute('aria-pressed', night ? 'true' : 'false');
-    lamp.querySelector('.lamp__text').textContent = night ? 'Day passage' : 'Night passage';
-  }
-
-  function effective() {
-    return root.getAttribute('data-theme') || (systemDark.matches ? 'night' : 'day');
-  }
 
   var stored = null;
   try { stored = localStorage.getItem(KEY); } catch (e) { /* private mode */ }
   if (stored === 'night' || stored === 'day') root.setAttribute('data-theme', stored);
-  label();
 
-  lamp.addEventListener('click', function () {
-    var next = effective() === 'night' ? 'day' : 'night';
-    root.setAttribute('data-theme', next);
-    label();
-    try { localStorage.setItem(KEY, next); } catch (e) { /* ignore */ }
+  /* Ship's time is the absence of a choice: no attribute, no storage,
+     and the OS preference steers the page. */
+  function chosen() {
+    return root.getAttribute('data-theme') || 'system';
+  }
+
+  var opts = Array.prototype.slice.call(document.querySelectorAll('.lamp__opt'));
+
+  function reflect() {
+    var c = chosen();
+    opts.forEach(function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-set-theme') === c ? 'true' : 'false');
+    });
+  }
+
+  opts.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var pick = b.getAttribute('data-set-theme');
+      if (pick === 'system') {
+        root.removeAttribute('data-theme');
+        try { localStorage.removeItem(KEY); } catch (e) { /* ignore */ }
+      } else {
+        root.setAttribute('data-theme', pick);
+        try { localStorage.setItem(KEY, pick); } catch (e) { /* ignore */ }
+      }
+      reflect();
+    });
   });
 
-  /* Track the system setting while no explicit choice is stored. */
-  systemDark.addEventListener('change', function () {
-    if (!root.hasAttribute('data-theme')) label();
-  });
+  reflect();
 
   /* ── motion-sensitive behaviour ──────────────────────────── */
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
