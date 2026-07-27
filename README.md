@@ -14,7 +14,7 @@ first proof. Every link on the chart resolves.
 ```
 index.html               structure and content
 style.css                the visual system
-script.js                theme toggle, course-line draw, waypoint reveal
+script.js                the lamp (light / dark / system), course-line draw, waypoint reveal
 assets/                  portrait
 vercel.json              security headers and caching
 scripts/check-links.mjs  anchor and asset integrity check, run in CI
@@ -37,7 +37,7 @@ Choices follow real chart convention rather than decoration:
   charts.
 - Water features on a chart are lettered in italic; the "soundings" line under
   each project leans for the same reason.
-- **Night passage** shifts the palette warm rather than cool, following the
+- **Dark** shifts the palette warm rather than cool, following the
   red-light convention ships use to preserve night vision after dark.
 
 The projects are **waypoints on a plotted course**, ordered by first commit.
