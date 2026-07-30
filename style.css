@@ -255,7 +255,6 @@ code { font-family: var(--mono); font-size: 0.9em; }
 }
 .wp[data-kind="prod"]    .wp__pin { border-color: var(--magenta); }
 .wp[data-kind="course"]  .wp__pin { border-color: var(--ink-soft); }
-.wp[data-kind="private"] .wp__pin { border-color: var(--ink-faint); border-style: dashed; }
 
 /* The major light outranks its production mark — it is the one fixed
    point the chart is oriented from, so it reads as a lit beacon. */
@@ -306,7 +305,6 @@ code { font-family: var(--mono); font-size: 0.9em; }
 }
 .card__kind[data-kind="prod"]    { color: var(--magenta); }
 .card__kind[data-kind="course"]  { color: var(--ink-soft); }
-.card__kind[data-kind="private"] { color: var(--ink-faint); }
 
 .card__body { margin: 1rem 0 0; max-width: 62ch; color: var(--ink-soft); }
 
@@ -351,7 +349,6 @@ code { font-family: var(--mono); font-size: 0.9em; }
 .key { width: 13px; height: 13px; border-radius: 50%; flex: none; border: 2px solid var(--ink-soft); }
 .key--prod    { border-color: var(--magenta); }
 .key--course  { border-color: var(--ink-soft); }
-.key--private { border-color: var(--ink-faint); border-style: dashed; }
 .key--light   { background: var(--magenta); border-color: var(--magenta); box-shadow: 0 0 0 4px color-mix(in srgb, var(--magenta) 18%, transparent); }
 
 @media (max-width: 40rem) { .legend__row { grid-template-columns: 1fr; } }
