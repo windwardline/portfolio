@@ -5,11 +5,9 @@ Live: **[portfolio.windwardline.com](https://portfolio.windwardline.com)**
 A static portfolio. No framework, no build step, no dependencies — three files
 and a config.
 
-Seven waypoints as of July 2026: six products in production on their own
-domains (LevelFlow Cloud, Mimic, Pathfinder, Proper Form, TimeShift, That's
-Extra) and one venture in foundation — Refactored, at
-[wearerefactored.com](https://wearerefactored.com), with Pathfinder as its
-first proof. Every link on the chart resolves.
+Six waypoints as of July 2026, each in production on its own domain
+(LevelFlow Cloud, Mimic, Pathfinder, Proper Form, TimeShift, That's Extra).
+Every link on the chart resolves.
 
 ```
 index.html               structure and content
@@ -45,8 +43,8 @@ The sequence carries real information — it is the actual order the work
 happened in.
 
 The **legend** is where honesty lives. Not everything here is the same kind of
-thing, and a chart that hides that is worse than no chart, so production work,
-coursework, and private repositories are marked distinctly — and each waypoint
+thing, and a chart that hides that is worse than no chart, so production work
+and coursework are marked distinctly — and each waypoint
 draws the same mark as its row in the legend, so the two cannot drift apart
 without it being obvious.
 
