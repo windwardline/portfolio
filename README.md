@@ -6,7 +6,7 @@ A static portfolio. No framework, no build step, no dependencies — three files
 and a config.
 
 Six waypoints as of July 2026, each in production on its own domain
-(LevelFlow Cloud, Mimic, Pathfinder, Proper Form, TimeShift, That's Extra).
+(Levelflow Cloud, Mimic, Pathfinder, Proper Form, TimeShift, That's Extra).
 Every link on the chart resolves.
 
 ```
