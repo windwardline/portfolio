@@ -2,10 +2,12 @@
 
 Live: **[portfolio.windwardline.com](https://portfolio.windwardline.com)**
 
+![The chart's title block: Michael Peacock, Design Engineer — plotted as a NOAA-style navigational chart](assets/readme-hero.png)
+
 A static portfolio. No framework, no build step, no dependencies — three files
 and a config.
 
-Six waypoints as of July 2026, each in production on its own domain
+Six waypoints as of August 2026, each in production on its own domain
 (Levelflow Cloud, Mimic, Pathfinder, Proper Form, TimeShift, That's Extra).
 Every link on the chart resolves.
 
@@ -13,7 +15,7 @@ Every link on the chart resolves.
 index.html               structure and content
 style.css                the visual system
 script.js                the lamp (light / dark / system), course-line draw, waypoint reveal
-assets/                  portrait
+assets/                  portrait, link-preview card, README hero
 vercel.json              security headers and caching
 scripts/check-links.mjs  anchor and asset integrity check, run in CI
 .github/workflows/ci.yml markup validation and parse checks
