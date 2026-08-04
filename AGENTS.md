@@ -8,7 +8,7 @@ Dev: `python3 -m http.server 8899`. CI-equivalent locally: `npx --yes html-valid
 
 ## Gates — CI in order
 
-html-validate → internal link/asset check → `vercel.json` parses → `script.js` syntax. Push to main deploys production (Vercel; Cloudflare DNS). A parallel `security.yml` (PRs, pushes, weekly cron) gates Semgrep and secret scan; a post-deploy job asserts the production security headers.
+html-validate → internal link/asset check → `vercel.json` parses → `script.js` syntax. Push to main deploys production (Vercel; Cloudflare DNS). A parallel `security.yml` (PRs, pushes, weekly cron) gates Semgrep and secret scan; a post-deploy job asserts the production security headers. An advisory Claude review runs on every PR (`claude-review.yml`, activating once the `ANTHROPIC_API_KEY` repo secret exists).
 
 ## Laws
 
