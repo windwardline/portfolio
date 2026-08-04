@@ -10,6 +10,8 @@ and a config.
 Six waypoints as of August 2026, each in production on its own domain
 (Levelflow Cloud, Mimic, Pathfinder, Proper Form, TimeShift, That's Extra).
 Every link on the chart resolves.
+The loft — where the lines are drawn before they run — is at
+[craft.windwardline.com](https://craft.windwardline.com).
 
 ```
 index.html               structure and content
