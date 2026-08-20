@@ -1,6 +1,6 @@
 # Portfolio — operating contract
 
-Operating contract for AI work in this repo; the global `~/AGENTS.md` still applies. The portfolio renders Michael Peacock's work as a NOAA-style navigational chart. Live at portfolio.windwardline.com. Hand-written `index.html` + `style.css` + `script.js` — no package.json, no build step.
+Operating contract for AI work in this repo; the global `~/AGENTS.md` still applies. Work here follows the CONVERGE cycle and delivery discipline in `FLEET.md` (windwardline/windwardline) — find → refute → verify yourself → fix → re-rank → test → update → report, and the delivery rules under it. The portfolio renders Michael Peacock's work as a NOAA-style navigational chart. Live at portfolio.windwardline.com. Hand-written `index.html` + `style.css` + `script.js` — no package.json, no build step.
 
 ## Commands
 
