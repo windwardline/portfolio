@@ -7,8 +7,8 @@ Live: **[portfolio.windwardline.com](https://portfolio.windwardline.com)**
 A static portfolio. No framework, no build step, no dependencies — three files
 and a config.
 
-Six waypoints as of August 2026, each in production on its own domain
-(Levelflow Cloud, Mimic, Pathfinder, Proper Form, TimeShift, That's Extra).
+Five waypoints as of September 2026, each in production on its own domain
+(Levelflow Cloud, Mimic, Pathfinder, Proper Form, That's Extra).
 Every link on the chart resolves.
 The loft — where the lines are drawn before they run — is at
 [craft.windwardline.com](https://craft.windwardline.com).
