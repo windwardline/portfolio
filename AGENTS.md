@@ -19,3 +19,19 @@ Dev: `python3 -m http.server 8899`. CI-equivalent locally: `npx --yes html-valid
 - Chart conventions are the design system: magenta `#C4106B` only for soundings and the major light; dark mode shifts warm (the night-vision convention), never cool.
 - Content works without JS. `prefers-reduced-motion` and `prefers-color-scheme` are honored with a persisted explicit override; the reveal arms only after IntersectionObserver confirms, with a timeout failsafe.
 - Test counts mirror their source repositories; the product roster mirrors the launch registry; the CONVERGE summary mirrors `FLEET.md`. Verify each source immediately before copying its claim here.
+
+## Declared gates
+
+The machine-readable gate set. `scripts/fleet-conformance.sh` requires this block
+and the workspace done-gate hook runs every `gate:` line before a session may
+finish, so what runs is what is written here rather than what a hook guessed from
+`package.json`. Each key states its own boundary: `gate:` runs at session end and
+must be local and quick; `release:` runs before a pull request and may be slow;
+`cadence:` is scheduled or needs the live machine and is run by neither.
+
+```fleet-gates
+gate: npx --yes html-validate@9 index.html
+gate: node scripts/check-links.mjs
+gate: node --check script.js
+gate: node -e "JSON.parse(require('fs').readFileSync('vercel.json','utf8'))"
+```
