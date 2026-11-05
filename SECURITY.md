@@ -12,5 +12,5 @@ reply within 72 hours. Please do not open public issues for security reports.
 
 ## Scope
 
-- This repository and the deployment at https://portfolio.windwardline.com
+- This repository and the deployment at https://michaelpeacock.dev
 - Linked products have their own repositories and policies.
