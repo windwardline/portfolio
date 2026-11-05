@@ -1,6 +1,6 @@
 # Portfolio — Michael Peacock
 
-Live: **[portfolio.windwardline.com](https://portfolio.windwardline.com)**
+Live: **[michaelpeacock.dev](https://michaelpeacock.dev)**
 
 ![The chart's title block: Michael Peacock, Design Engineer — plotted as a NOAA-style navigational chart](assets/readme-hero.png)
 
